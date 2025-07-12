@@ -53,6 +53,13 @@ PORT=8080
 Install Goose:
 
 ```bash
+export GOOSE_DRIVER=sqlite3
+export GOOSE_DBSTRING=bookstore.db
+export GOOSE_MIGRATION_DIR=./migrations
+export GOOSE_TABLE=custom.goose_migrations
+```
+
+```bash
 go install github.com/pressly/goose/v3/cmd/goose@latest
 ```
 

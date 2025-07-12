@@ -13,7 +13,6 @@ This project includes:
 ## Requirements
 
 * Go 1.20 or later
-* `make` (optional, for simplified commands)
 
 ---
 
@@ -43,8 +42,8 @@ go install github.com/pressly/goose/v3/cmd/goose@latest
 Create a `.env` file in the root folder:
 
 ```env
-DB_DRIVER=postgres
-DB_SOURCE=host=localhost user=postgres password=yourpass dbname=bookstore port=5432 sslmode=disable
+DB_DRIVER=sqlite3
+DB_SOURCE=./data/bookstore.db
 PORT=8080
 ```
 
@@ -53,20 +52,22 @@ PORT=8080
 Install Goose:
 
 ```bash
+go install github.com/pressly/goose/v3/cmd/goose@latest
+```
+
+Run Goose Env:
+
+```bash
 export GOOSE_DRIVER=sqlite3
 export GOOSE_DBSTRING=bookstore.db
 export GOOSE_MIGRATION_DIR=./migrations
 export GOOSE_TABLE=custom.goose_migrations
 ```
 
-```bash
-go install github.com/pressly/goose/v3/cmd/goose@latest
-```
-
 Run migrations:
 
 ```bash
-goose -dir ./migrations postgres "$DB_SOURCE" up
+goose -dir ./migrations sqlite3 "$DB_SOURCE" up
 ```
 
 To create a new migration:

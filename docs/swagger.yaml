@@ -1,0 +1,30 @@
+basePath: /
+host: localhost:8080
+info:
+  contact:
+    email: fiber@swagger.io
+    name: API Support
+  description: This is a sample swagger for Fiber
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Fiber Example API
+  version: "1.0"
+paths:
+  /hello:
+    get:
+      consumes:
+      - application/json
+      description: Returns a simple hello message
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: Hello Swagger
+          schema:
+            type: string
+      summary: Get Hello Swagger for test
+      tags:
+      - test
+swagger: "2.0"

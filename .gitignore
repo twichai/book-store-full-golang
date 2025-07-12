@@ -1,0 +1,44 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build output
+*.test
+*.out
+
+# Output of the Go coverage tool
+*.coverprofile
+
+# SQLite database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Vendor directory (if you vendor dependencies)
+vendor/
+
+# Dependency directories (remove if you use modules)
+Godeps/
+_glide/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files (optional, if you store secrets here)
+.env
+
+# Goose migration files backup (optional)
+*.bak

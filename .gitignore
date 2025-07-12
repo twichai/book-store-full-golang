@@ -42,3 +42,6 @@ Thumbs.db
 
 # Goose migration files backup (optional)
 *.bak
+
+# Air Tmp files
+tmp/

@@ -42,9 +42,10 @@ go install github.com/pressly/goose/v3/cmd/goose@latest
 Create a `.env` file in the root folder:
 
 ```env
-DB_DRIVER=sqlite3
-DB_SOURCE=./data/bookstore.db
-PORT=8080
+export GOOSE_DRIVER=sqlite3
+export GOOSE_DBSTRING=bookstore.db
+export GOOSE_MIGRATION_DIR=./migrations
+export GOOSE_TABLE=custom.goose_migrations
 ```
 
 ### 4. Run Database Migrations (Goose)
@@ -55,19 +56,10 @@ Install Goose:
 go install github.com/pressly/goose/v3/cmd/goose@latest
 ```
 
-Run Goose Env:
-
-```bash
-export GOOSE_DRIVER=sqlite3
-export GOOSE_DBSTRING=bookstore.db
-export GOOSE_MIGRATION_DIR=./migrations
-export GOOSE_TABLE=custom.goose_migrations
-```
-
 Run migrations:
 
 ```bash
-goose -dir ./migrations sqlite3 "$DB_SOURCE" up
+goose up
 ```
 
 To create a new migration:
@@ -124,7 +116,7 @@ book-store/
 ├── cmd/                # Main application entry point
 ├── configs/            # Configuration files
 ├── internal/
-│   ├── controller/     # Delivery layer (HTTP handlers)
+│   ├── handlers/     # Delivery layer (HTTP handlers)
 │   ├── domain/         # Domain entities and interfaces
 │   ├── repository/     # Implementation of repositories
 │   └── usecase/        # Business logic

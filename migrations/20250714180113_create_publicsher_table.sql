@@ -1,11 +1,10 @@
 -- +goose Up
 -- +goose StatementBegin
-CREATE TABLE books (
+CREATE TABLE publishers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    price REAL NOT NULL,
-    published_date DATE,
-    stock INT NOT NULL,
+    name TEXT NOT NULL,
+    address TEXT NOT NULL,
+    phone TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     deleted_at DATETIME
@@ -14,5 +13,6 @@ CREATE TABLE books (
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE books;
+DROP TABLE publishers;
 -- +goose StatementEnd
+

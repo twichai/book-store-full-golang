@@ -1,14 +1,14 @@
 -- +goose Up
 -- +goose StatementBegin
 CREATE TABLE books (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
-    price REAL NOT NULL,
+    price NUMERIC(10, 2) NOT NULL, -- good for money
     published_date DATE,
-    stock INT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    deleted_at DATETIME
+    stock INTEGER NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMPTZ
 );
 -- +goose StatementEnd
 
@@ -16,3 +16,4 @@ CREATE TABLE books (
 -- +goose StatementBegin
 DROP TABLE books;
 -- +goose StatementEnd
+

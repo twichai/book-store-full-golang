@@ -1,16 +1,16 @@
 -- +goose Up
 -- +goose StatementBegin
 CREATE TABLE orders (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    order_date TEXT NOT NULL,
-    total_amount INTEGER NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    deleted_at DATETIME
+    id SERIAL PRIMARY KEY,
+    order_date DATE NOT NULL,
+    total_amount NUMERIC(10, 2) NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMPTZ
 );
 
- CREATE TABLE  order_items (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+CREATE TABLE order_items (
+    id SERIAL PRIMARY KEY,
     order_id INTEGER NOT NULL,
     book_id INTEGER NOT NULL,
     quantity INTEGER NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE orders (
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE orders;
-DROP TABLE order_items;
+DROP TABLE IF EXISTS order_items;
+DROP TABLE IF EXISTS orders;
 -- +goose StatementEnd
 

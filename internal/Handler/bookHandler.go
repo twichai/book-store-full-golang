@@ -27,7 +27,7 @@ func (b *BookHandler) Delete(c *fiber.Ctx) error {
 	panic("unimplemented")
 }
 
-// GetAll godoc
+// Get All Books
 // @Summary      Get all books
 // @Description  Returns a list of books
 // @Tags         book
@@ -44,9 +44,26 @@ func (b *BookHandler) GetAll(c *fiber.Ctx) error {
 	return c.JSON(books)
 }
 
-// GetById implements entities.BookHandler.
+// Get A Book
+// @Summary      Get a books
+// @Description  Returns a books
+// @Tags         book
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Book ID"
+// @Success      200  {object}  entities.Book
+// @Failure      500  {object}  map[string]string
+// @Router       /books/{id} [get]
 func (b *BookHandler) GetById(c *fiber.Ctx) error {
-	panic("unimplemented")
+	id, err := c.ParamsInt("id")
+	if err != nil {
+		c.Status(fiber.ErrBadRequest.Code).JSON(fiber.Map{"error": err.Error()})
+	}
+	book, err := b.usecase.GetById(uint(id))
+	if err != nil {
+		c.Status(fiber.ErrInternalServerError.Code).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(book)
 }
 
 // Update implements entities.BookHandler.

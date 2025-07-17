@@ -9,24 +9,27 @@ import (
 
 type Book struct {
 	gorm.Model
-	title          string    `json:"title,omitempty"`
-	author         string    `json:"author,omitempty"`
-	published_date time.Time `json:"published_date,omitempty"`
+	Title         string    `json:"title,omitempty"`
+	Price         float32   `json:"price,omitempty"`
+	Stock         int       `json:"stock,omitempty"`
+	PublishedDate time.Time `json:"published_date,omitempty"`
+	PublishersID  uint      `json:"publishers_id,omitempty"`
+	Publicsher    Publisher `json:"publicsher,omitempty" gorm:"foreignKey:PublishersID;references:ID"`
 }
 
 type BookRepo interface {
 	Create(book Book) error
-	GetById(id uint) (Book, error)
-	GetAll() ([]Book, error)
-	Update(book Book) (Book, error)
+	GetById(id uint) (*Book, error)
+	GetAll() ([]*Book, error)
+	Update(book Book) (*Book, error)
 	Delete(id uint) error
 }
 
 type BookUsecase interface {
 	Create(book Book) error
-	GetById(id uint) (Book, error)
-	GetAll() ([]Book, error)
-	Update(book Book, bookId uint) (Book, error)
+	GetById(id uint) (*Book, error)
+	GetAll() ([]*Book, error)
+	Update(book Book, bookId uint) (*Book, error)
 	Delete(id uint) error
 }
 

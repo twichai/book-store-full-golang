@@ -15,21 +15,25 @@ func (g *GormBookOrderRepository) Delete(id uint) error {
 }
 
 // GetAll implements entities.BookRepo.
-func (g *GormBookOrderRepository) GetAll() ([]entities.Book, error) {
-	books := new([]entities.Book)
+func (g *GormBookOrderRepository) GetAll() ([]*entities.Book, error) {
+	var books []*entities.Book
 	if result := g.db.Find(&books); result.Error != nil {
 		return nil, result.Error
 	}
-	return *books, nil
+	return books, nil
 }
 
 // GetById implements entities.BookRepo.
-func (g *GormBookOrderRepository) GetById(id uint) (entities.Book, error) {
-	panic("unimplemented")
+func (g *GormBookOrderRepository) GetById(id uint) (*entities.Book, error) {
+	book := new(entities.Book)
+	if result := g.db.First(book, id); result.Error != nil {
+		return nil, result.Error
+	}
+	return book, nil
 }
 
 // Update implements entities.BookRepo.
-func (g *GormBookOrderRepository) Update(book entities.Book) (entities.Book, error) {
+func (g *GormBookOrderRepository) Update(book entities.Book) (*entities.Book, error) {
 	panic("unimplemented")
 }
 

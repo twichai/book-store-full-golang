@@ -1,6 +1,8 @@
 package usecase
 
-import entities "github.com/twichai/book-store-full-golang/internal/domain"
+import (
+	entities "github.com/twichai/book-store-full-golang/internal/domain"
+)
 
 type BookUsecase struct {
 	repo entities.BookRepo
@@ -12,17 +14,17 @@ func (b *BookUsecase) Delete(id uint) error {
 }
 
 // GetAll implements entities.BookUsecase.
-func (b *BookUsecase) GetAll() ([]entities.Book, error) {
+func (b *BookUsecase) GetAll() ([]*entities.Book, error) {
 	return b.repo.GetAll()
 }
 
 // GetById implements entities.BookUsecase.
-func (b *BookUsecase) GetById(id uint) (entities.Book, error) {
-	panic("unimplemented")
+func (b *BookUsecase) GetById(id uint) (*entities.Book, error) {
+	return b.repo.GetById(id)
 }
 
 // Update implements entities.BookUsecase.
-func (b *BookUsecase) Update(book entities.Book, bookId uint) (entities.Book, error) {
+func (b *BookUsecase) Update(book entities.Book, bookId uint) (*entities.Book, error) {
 	panic("unimplemented")
 }
 

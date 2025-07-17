@@ -8,13 +8,13 @@ import (
 )
 
 type Book struct {
-	gorm.Model
+	gorm.Model    `swaggerignore:"true"`
 	Title         string    `json:"title,omitempty"`
 	Price         float32   `json:"price,omitempty"`
 	Stock         int       `json:"stock,omitempty"`
-	PublishedDate time.Time `json:"published_date,omitempty"`
-	PublishersID  uint      `json:"publishers_id,omitempty"`
-	Publicsher    Publisher `json:"publicsher,omitempty" gorm:"foreignKey:PublishersID;references:ID"`
+	PublishedDate time.Time `json:"published_date"`
+	PublisherID   uint      `json:"publisher_id,omitempty"`
+	Publicsher    Publisher `json:"publicsher" gorm:"foreignKey:PublisherID;references:ID" swaggerignore:"true"`
 }
 
 type BookRepo interface {

@@ -39,7 +39,7 @@ func (g *GormBookOrderRepository) Update(book entities.Book) (*entities.Book, er
 
 // Create implements entities.BookRepo.
 func (g GormBookOrderRepository) Create(book entities.Book) error {
-	result := g.db.Create(book)
+	result := g.db.Create(&book)
 	if result.Error != nil {
 		return result.Error
 	}

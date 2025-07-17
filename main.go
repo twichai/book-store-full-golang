@@ -74,6 +74,7 @@ func main() {
 
 	app.Get("/books", bookHandler.GetAll)
 	app.Get("/books/:id", bookHandler.GetById)
+	app.Post("/books", bookHandler.Create)
 
 	app.Get("/hello", hello)
 

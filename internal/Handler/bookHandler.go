@@ -9,13 +9,21 @@ type BookHandler struct {
 	usecase entities.BookUsecase
 }
 
-// Create implements entities.BookHandler.
+// @Summary      Create a new book
+// @Description  Creates a new book and returns the created book object
+// @Tags         book
+// @Accept       json
+// @Produce      json
+// @Param        book  body      entities.Book  true  "Book Data"
+// @Success      201   {object}  entities.Book
+// @Failure      400   {object}  map[string]string
+// @Failure      500   {object}  map[string]string
+// @Router       /books [post]
 func (b *BookHandler) Create(c *fiber.Ctx) error {
 	newBook := new(entities.Book)
 	if err := c.BodyParser(newBook); err != nil {
 		return c.Status(fiber.ErrBadRequest.Code).JSON(fiber.Map{"error": err.Error()})
 	}
-
 	if err := b.usecase.Create(*newBook); err != nil {
 		return c.Status(fiber.ErrInternalServerError.Code).JSON(fiber.Map{"error": err.Error()})
 	}

@@ -42,10 +42,14 @@ go install github.com/pressly/goose/v3/cmd/goose@latest
 Create a `.env` file in the root folder:
 
 ```env
-export GOOSE_DRIVER=sqlite3
-export GOOSE_DBSTRING=bookstore.db
-export GOOSE_MIGRATION_DIR=./migrations
-export GOOSE_TABLE=custom.goose_migrations
+GOOSE_DRIVER=postgres
+GOOSE_DBSTRING=postgres://admin:admin@localhost:5432/book_store
+GOOSE_MIGRATION_DIR=./migrations
+
+POSTGRES_USER="admin"
+POSTGRES_PASSWORD="admin"
+POSTGRES_DB="book_store"
+DSN="host=localhost user=${POSTGRES_USER} password=${POSTGRES_PASSWORD} dbname=${POSTGRES_DB} port=5432 sslmode=disable TimeZone=Asia/Shanghai"
 ```
 
 ### 4. Run Database Migrations (Goose)
@@ -97,7 +101,7 @@ go install github.com/swaggo/swag/cmd/swag@latest
 Generate Swagger docs:
 
 ```bash
-swag init
+swag init --parseDependency --parseInternal
 ```
 
 Then visit:

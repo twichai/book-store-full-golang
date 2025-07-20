@@ -38,6 +38,12 @@ func (b *BookUsecase) Update(book *entities.Book, bookId uint) (*entities.Book, 
 
 // Create implements entities.BookUsecase.
 func (b *BookUsecase) Create(book *entities.Book) error {
+	if book.Price < 0 {
+		return errors.New("Price can't be negative")
+	}
+	if book.Stock < 0 {
+		return errors.New("Stock can't be negative")
+	}
 	return b.repo.Create(book)
 }
 

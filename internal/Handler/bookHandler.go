@@ -24,7 +24,7 @@ func (b *BookHandler) Create(c *fiber.Ctx) error {
 	if err := c.BodyParser(newBook); err != nil {
 		return c.Status(fiber.ErrBadRequest.Code).JSON(fiber.Map{"error": err.Error()})
 	}
-	if err := b.usecase.Create(*newBook); err != nil {
+	if err := b.usecase.Create(newBook); err != nil {
 		return c.Status(fiber.ErrInternalServerError.Code).JSON(fiber.Map{"error": err.Error()})
 	}
 	return c.SendStatus(fiber.StatusCreated)

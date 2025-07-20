@@ -1,0 +1,20 @@
+meta {
+  name: Update book
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/books/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "The Pragmatic Programmer(edit)",
+    "author": "Andrew Hunt(edit)",
+    "price": 29.99
+  }
+  
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Create a book
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/books
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt",
+    "published_year": 1999,
+    "isbn": "978-0201616224",
+    "price": 29.99,
+    "publisher_id": 1
+  }
+  
+}

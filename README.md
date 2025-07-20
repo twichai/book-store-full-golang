@@ -101,7 +101,7 @@ go install github.com/swaggo/swag/cmd/swag@latest
 Generate Swagger docs:
 
 ```bash
-swag init --parseDependency --parseInternal
+swag init
 ```
 
 Then visit:

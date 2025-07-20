@@ -37,7 +37,7 @@ func (b *BookUsecase) Update(book *entities.Book, bookId uint) (*entities.Book, 
 }
 
 // Create implements entities.BookUsecase.
-func (b *BookUsecase) Create(book entities.Book) error {
+func (b *BookUsecase) Create(book *entities.Book) error {
 	return b.repo.Create(book)
 }
 

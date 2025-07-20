@@ -18,7 +18,7 @@ type Book struct {
 }
 
 type BookRepo interface {
-	Create(book Book) error
+	Create(book *Book) error
 	GetById(id uint) (*Book, error)
 	GetAll() ([]*Book, error)
 	Update(book *Book, id uint) (*Book, error)
@@ -26,7 +26,7 @@ type BookRepo interface {
 }
 
 type BookUsecase interface {
-	Create(book Book) error
+	Create(book *Book) error
 	GetById(id uint) (*Book, error)
 	GetAll() ([]*Book, error)
 	Update(book *Book, bookId uint) (*Book, error)

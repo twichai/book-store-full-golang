@@ -47,7 +47,7 @@ func (g *GormBookOrderRepository) Update(book *entities.Book, id uint) (*entitie
 }
 
 // Create implements entities.BookRepo.
-func (g GormBookOrderRepository) Create(book entities.Book) error {
+func (g GormBookOrderRepository) Create(book *entities.Book) error {
 	result := g.db.Create(&book)
 	if result.Error != nil {
 		return result.Error

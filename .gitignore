@@ -45,3 +45,5 @@ Thumbs.db
 
 # Air Tmp files
 tmp/
+
+bruno/book_store/environments/

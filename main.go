@@ -76,6 +76,7 @@ func main() {
 	app.Get("/books/:id", bookHandler.GetById)
 	app.Post("/books", bookHandler.Create)
 	app.Put("/books/:id", bookHandler.Update)
+	app.Delete("/books/:id", bookHandler.Delete)
 
 	app.Get("/hello", hello)
 

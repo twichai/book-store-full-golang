@@ -30,9 +30,26 @@ func (b *BookHandler) Create(c *fiber.Ctx) error {
 	return c.SendStatus(fiber.StatusCreated)
 }
 
-// Delete implements entities.BookHandler.
+// Delete A Book
+// @Summary      Delete a book
+// @Description  Deletes a book by ID and returns status
+// @Tags         book
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Book ID"
+// @Success      200  {object}  map[string]string
+// @Failure      500  {object}  map[string]string
+// @Router       /books/{id} [delete]
 func (b *BookHandler) Delete(c *fiber.Ctx) error {
-	panic("unimplemented")
+	id, err := c.ParamsInt("id")
+	if err != nil {
+		return c.Status(fiber.ErrBadRequest.Code).JSON(fiber.Map{"error": err.Error()})
+	}
+	if err := b.usecase.Delete(uint(id)); err != nil {
+		return c.Status(fiber.ErrInternalServerError.Code).JSON(fiber.Map{"error": err})
+	}
+	return c.SendStatus(fiber.StatusOK)
+
 }
 
 // Get All Books

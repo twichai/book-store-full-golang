@@ -11,7 +11,11 @@ type GormBookOrderRepository struct {
 
 // Delete implements entities.BookRepo.
 func (g *GormBookOrderRepository) Delete(id uint) error {
-	panic("unimplemented")
+	result := g.db.Delete(&entities.Book{}, id)
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
 }
 
 // GetAll implements entities.BookRepo.

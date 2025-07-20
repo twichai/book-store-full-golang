@@ -11,7 +11,7 @@ type BookUsecase struct {
 
 // Delete implements entities.BookUsecase.
 func (b *BookUsecase) Delete(id uint) error {
-	panic("unimplemented")
+	return b.repo.Delete(id)
 }
 
 // GetAll implements entities.BookUsecase.

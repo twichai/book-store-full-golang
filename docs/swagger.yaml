@@ -83,6 +83,34 @@ paths:
       tags:
       - book
   /books/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Deletes a book by ID and returns status
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete a book
+      tags:
+      - book
     get:
       consumes:
       - application/json

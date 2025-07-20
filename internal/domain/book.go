@@ -21,7 +21,7 @@ type BookRepo interface {
 	Create(book Book) error
 	GetById(id uint) (*Book, error)
 	GetAll() ([]*Book, error)
-	Update(book Book) (*Book, error)
+	Update(book *Book, id uint) (*Book, error)
 	Delete(id uint) error
 }
 
@@ -29,7 +29,7 @@ type BookUsecase interface {
 	Create(book Book) error
 	GetById(id uint) (*Book, error)
 	GetAll() ([]*Book, error)
-	Update(book Book, bookId uint) (*Book, error)
+	Update(book *Book, bookId uint) (*Book, error)
 	Delete(id uint) error
 }
 

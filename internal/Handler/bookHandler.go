@@ -74,9 +74,33 @@ func (b *BookHandler) GetById(c *fiber.Ctx) error {
 	return c.JSON(book)
 }
 
-// Update implements entities.BookHandler.
+// @Summary      Update a book
+// @Description  Update a book by ID and return the updated book
+// @Tags         book
+// @Accept       json
+// @Produce      json
+// @Param        id    path      int                 true  "Book ID"
+// @Param        book  body      entities.Book   true  "Book Data"
+// @Success      200   {object}  entities.Book
+// @Failure      400   {object}  map[string]string
+// @Failure      500   {object}  map[string]string
+// @Router       /books/{id} [put]
 func (b *BookHandler) Update(c *fiber.Ctx) error {
-	panic("unimplemented")
+	id, err := c.ParamsInt("id")
+	if err != nil {
+		c.Status(fiber.ErrBadRequest.Code).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	book := new(entities.Book)
+	if err = c.BodyParser(&book); err != nil {
+		c.Status(fiber.ErrBadRequest.Code).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	book, err = b.usecase.Update(book, uint(id))
+	if err != nil {
+		c.Status(fiber.ErrInternalServerError.Code).JSON(fiber.Map{"error": err})
+	}
+	return c.JSON(book)
 }
 
 func NewBookHandler(usecase entities.BookUsecase) entities.BookHandler {

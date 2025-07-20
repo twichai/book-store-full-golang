@@ -45,7 +45,7 @@ func main() {
 			SlowThreshold:             time.Second, //Slow SQL threshold
 			LogLevel:                  logger.Info, // Log level
 			IgnoreRecordNotFoundError: true,        // Ignore ErrRecordNotFound error for logger
-			ParameterizedQueries:      true,        // Don't include params in the SQL log
+			ParameterizedQueries:      false,       // Don't include params in the SQL log
 			Colorful:                  true,        // Disable color
 		},
 	)
@@ -75,6 +75,7 @@ func main() {
 	app.Get("/books", bookHandler.GetAll)
 	app.Get("/books/:id", bookHandler.GetById)
 	app.Post("/books", bookHandler.Create)
+	app.Put("/books/:id", bookHandler.Update)
 
 	app.Get("/hello", hello)
 

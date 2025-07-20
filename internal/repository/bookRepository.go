@@ -33,8 +33,13 @@ func (g *GormBookOrderRepository) GetById(id uint) (*entities.Book, error) {
 }
 
 // Update implements entities.BookRepo.
-func (g *GormBookOrderRepository) Update(book entities.Book) (*entities.Book, error) {
-	panic("unimplemented")
+func (g *GormBookOrderRepository) Update(book *entities.Book, id uint) (*entities.Book, error) {
+	result := g.db.Model(entities.Book{}).Where("id = ?", book.ID).Updates(book)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	g.db.First(book)
+	return book, nil
 }
 
 // Create implements entities.BookRepo.

@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"errors"
 	entities "github.com/twichai/book-store-full-golang/internal/domain"
 )
 
@@ -24,8 +25,15 @@ func (b *BookUsecase) GetById(id uint) (*entities.Book, error) {
 }
 
 // Update implements entities.BookUsecase.
-func (b *BookUsecase) Update(book entities.Book, bookId uint) (*entities.Book, error) {
-	panic("unimplemented")
+func (b *BookUsecase) Update(book *entities.Book, bookId uint) (*entities.Book, error) {
+	book.ID = bookId
+	if book.Price < 0 {
+		return nil, errors.New("Price can't be negative")
+	}
+	if book.Stock < 0 {
+		return nil, errors.New("Stock can't be negative")
+	}
+	return b.repo.Update(book, bookId)
 }
 
 // Create implements entities.BookUsecase.
